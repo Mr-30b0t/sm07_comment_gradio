@@ -1,0 +1,286 @@
+/* Hacker/Terminal Theme - Compact & Minimal */
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-secondary: #111111;
+    --accent-green: #00ff41;
+    --accent-cyan: #00ffff;
+    --text-primary: #00ff41;
+    --text-secondary: #ffffff;
+    --border-color: #333333;
+    --shadow-glow: rgba(0, 255, 65, 0.3);
+}
+
+/* Main container - much smaller and centered */
+.gradio-container {
+    background: radial-gradient(circle at center, #0a0f0a 0%, #000000 100%);
+    min-height: 100vh;
+    font-family: 'Courier New', 'Monaco', monospace;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Compact main content */
+.main {
+    max-width: 500px !important;
+    margin: 0 auto !important;
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-green);
+    border-radius: 8px;
+    box-shadow: 
+        0 0 20px var(--shadow-glow),
+        inset 0 0 20px rgba(0, 255, 65, 0.05);
+    padding: 20px;
+    position: relative;
+}
+
+/* Terminal-style header */
+.gradio-container h1 {
+    color: var(--accent-green);
+    text-align: center;
+    font-weight: 400;
+    font-size: 1.8rem;
+    margin: 0 0 20px 0;
+    text-shadow: 0 0 10px var(--shadow-glow);
+    font-family: 'Courier New', monospace;
+}
+
+.gradio-container h1:before {
+    content: "> ";
+    color: var(--accent-cyan);
+}
+
+/* Compact tabs */
+.tab-nav {
+    background: var(--bg-dark);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.tab-nav button {
+    background: var(--bg-dark) !important;
+    color: var(--text-secondary) !important;
+    border: none !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.9rem !important;
+    padding: 8px 16px !important;
+    transition: all 0.2s ease !important;
+}
+
+.tab-nav button:hover {
+    background: var(--bg-secondary) !important;
+    color: var(--accent-green) !important;
+    text-shadow: 0 0 5px var(--shadow-glow);
+}
+
+.tab-nav button[aria-selected="true"] {
+    background: var(--accent-green) !important;
+    color: var(--bg-dark) !important;
+    text-shadow: none !important;
+}
+
+/* Compact input fields */
+.gr-textbox {
+    margin: 8px 0 !important;
+}
+
+.gr-textbox input, .gr-textbox textarea {
+    background: var(--bg-dark) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    color: var(--text-secondary) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.9rem !important;
+    padding: 8px !important;
+    transition: all 0.2s ease !important;
+}
+
+.gr-textbox input:focus, .gr-textbox textarea:focus {
+    border-color: var(--accent-green) !important;
+    box-shadow: 0 0 8px var(--shadow-glow) !important;
+    outline: none !important;
+    color: var(--accent-green) !important;
+}
+
+/* Compact labels */
+.gr-textbox label, .gr-checkboxgroup label, .gr-radio label {
+    color: var(--text-secondary) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.85rem !important;
+    font-weight: 400 !important;
+    margin-bottom: 4px !important;
+}
+
+/* Hacker-style buttons */
+.gr-button {
+    background: var(--bg-dark) !important;
+    border: 1px solid var(--accent-green) !important;
+    border-radius: 4px !important;
+    color: var(--accent-green) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.9rem !important;
+    padding: 8px 16px !important;
+    transition: all 0.2s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+.gr-button:hover {
+    background: var(--accent-green) !important;
+    color: var(--bg-dark) !important;
+    box-shadow: 0 0 15px var(--shadow-glow) !important;
+    text-shadow: none !important;
+}
+
+/* Special button styling */
+button:contains("Generate Comment") {
+    border-color: var(--accent-cyan) !important;
+    color: var(--accent-cyan) !important;
+}
+
+button:contains("Generate Comment"):hover {
+    background: var(--accent-cyan) !important;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5) !important;
+}
+
+/* Compact checkboxes and radios */
+.gr-checkboxgroup, .gr-radio {
+    margin: 8px 0 !important;
+}
+
+.gr-checkboxgroup .gr-checkbox, .gr-radio .gr-radio-option {
+    margin: 4px 0 !important;
+    color: var(--text-secondary) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.85rem !important;
+}
+
+.gr-checkboxgroup input[type="checkbox"], .gr-radio input[type="radio"] {
+    accent-color: var(--accent-green) !important;
+    margin-right: 8px !important;
+}
+
+/* Compact rows */
+.gr-row {
+    gap: 10px !important;
+    margin: 10px 0 !important;
+}
+
+/* Terminal-style output */
+.gr-textbox:has(textarea[readonly]) {
+    background: var(--bg-dark) !important;
+    border: 1px solid var(--accent-cyan) !important;
+    border-radius: 4px !important;
+    padding: 8px !important;
+    margin-top: 15px !important;
+}
+
+.gr-textbox textarea[readonly] {
+    background: transparent !important;
+    border: none !important;
+    color: var(--accent-cyan) !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.3);
+}
+
+/* Panel styling - more compact */
+.gr-panel {
+    background: rgba(17, 17, 17, 0.8) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 4px !important;
+    padding: 12px !important;
+    margin: 8px 0 !important;
+}
+
+/* Copy button */
+.copy-button {
+    background: var(--bg-dark) !important;
+    border: 1px solid var(--accent-cyan) !important;
+    color: var(--accent-cyan) !important;
+    border-radius: 4px !important;
+}
+
+/* Remove excess spacing */
+.gr-form {
+    gap: 8px !important;
+}
+
+.gr-box {
+    padding: 8px !important;
+    gap: 8px !important;
+}
+
+/* Scrollbar styling */
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--accent-green);
+    border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-cyan);
+}
+
+/* Responsive - even more compact on mobile */
+@media (max-width: 768px) {
+    .main {
+        max-width: 95% !important;
+        padding: 15px !important;
+        margin: 10px auto !important;
+    }
+    
+    .gradio-container h1 {
+        font-size: 1.4rem !important;
+    }
+    
+    .gr-row {
+        flex-direction: column !important;
+        gap: 5px !important;
+    }
+}
+
+/* Terminal cursor effect for active inputs */
+.gr-textbox input:focus::after,
+.gr-textbox textarea:focus::after {
+    content: "_";
+    animation: blink 1s infinite;
+    color: var(--accent-green);
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Subtle matrix rain effect on container border */
+.main::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        var(--accent-green) 32%, 
+        var(--accent-green) 33%, 
+        transparent 35%);
+    border-radius: 8px;
+    z-index: -1;
+    animation: matrix-flow 3s linear infinite;
+}
+
+@keyframes matrix-flow {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
