@@ -47,4 +47,4 @@ with gr.Blocks(css=css) as demo:
     check_days_btn.click(fn=calculate_service_units, inputs=[start_date, end_date], outputs=[])
 
 if __name__ == "__main__":
-    demo.launch() 
+    demo.launch(share=True) 

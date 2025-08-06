@@ -1,4 +1,107 @@
 /* Hacker/Terminal Theme - Compact & Minimal */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg-dark: #f9f9f9;
+    --bg-secondary: #ffffff;
+    --accent-green: #007a2f;
+    --accent-cyan: #0099a8;
+    --text-primary: #007a2f;
+    --text-secondary: #222222;
+    --border-color: #cccccc;
+    --shadow-glow: rgba(0, 122, 47, 0.15);
+  }
+  .gradio-container {
+    background: radial-gradient(circle at center, #e8f5e9 0%, #f9f9f9 100%);
+  }
+  .main {
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent-green);
+    box-shadow: 0 0 10px var(--shadow-glow), inset 0 0 10px rgba(0,122,47,0.05);
+  }
+  .gradio-container h1 {
+    color: #007a2f !important;
+    text-shadow: none !important;
+    font-weight: 700 !important;
+    letter-spacing: 0 !important;
+    -webkit-text-stroke: 0 !important;
+    background: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    font-family: inherit !important;
+  }
+  .gradio-container h1:before {
+    color: #0099a8 !important;
+    text-shadow: none !important;
+    content: "> ";
+    font-weight: 700 !important;
+  }
+  .tab-nav,
+  .tab-nav button {
+    background: var(--bg-dark) !important;
+    color: var(--text-secondary) !important;
+    border-color: var(--border-color) !important;
+  }
+  .tab-nav button[aria-selected="true"] {
+    background: var(--accent-green) !important;
+    color: var(--bg-dark) !important;
+  }
+  .gr-textbox input,
+  .gr-textbox textarea {
+    background: var(--bg-secondary) !important;
+    color: var(--text-secondary) !important;
+    border: 1px solid var(--border-color) !important;
+  }
+  .gr-textbox label,
+  .gr-checkboxgroup label,
+  .gr-radio label {
+    color: var(--text-secondary) !important;
+  }
+  .gr-button {
+    background: var(--bg-dark) !important;
+    color: var(--accent-green) !important;
+    border: 1px solid var(--accent-green) !important;
+  }
+  .gr-button:hover {
+    background: var(--accent-green) !important;
+    color: var(--bg-dark) !important;
+  }
+  .gr-checkboxgroup input[type="checkbox"],
+  .gr-radio input[type="radio"] {
+    accent-color: var(--accent-green) !important;
+  }
+  .gr-textbox:has(textarea[readonly]) {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--accent-cyan) !important;
+  }
+  .gr-textbox textarea[readonly] {
+    color: var(--accent-cyan) !important;
+  }
+  .gr-panel {
+    background: rgba(255,255,255,0.8) !important;
+    border: 1px solid var(--border-color) !important;
+  }
+  h1, 
+  .gradio-container h1, 
+  .prose h1, 
+  .md h1 {
+    color: #007a2f !important;
+    background: none !important;
+    text-shadow: none !important;
+    font-weight: 700 !important;
+    font-size: 2rem !important;
+    letter-spacing: 0 !important;
+    -webkit-text-stroke: 0 !important;
+    opacity: 1 !important;
+    font-family: 'Segoe UI', 'Arial', sans-serif !important;
+    margin: 0.5em 0 !important;
+    text-align: center !important;
+  }
+  /* Add more overrides as needed for light mode */
+}
+
+
+
+
 :root {
     --bg-dark: #0a0a0a;
     --bg-secondary: #111111;
@@ -86,7 +189,7 @@
 }
 
 .gr-textbox input, .gr-textbox textarea {
-    background: var(--bg-dark) !important;
+    background: var(--bg-secondary) !important;
     border: 1px solid var(--border-color) !important;
     border-radius: 4px !important;
     color: var(--text-secondary) !important;
@@ -169,7 +272,7 @@ button:contains("Generate Comment"):hover {
 
 /* Terminal-style output */
 .gr-textbox:has(textarea[readonly]) {
-    background: var(--bg-dark) !important;
+    background: var(--bg-secondary) !important;
     border: 1px solid var(--accent-cyan) !important;
     border-radius: 4px !important;
     padding: 8px !important;
@@ -177,8 +280,6 @@ button:contains("Generate Comment"):hover {
 }
 
 .gr-textbox textarea[readonly] {
-    background: transparent !important;
-    border: none !important;
     color: var(--accent-cyan) !important;
     font-family: 'Courier New', monospace !important;
     font-size: 0.85rem !important;
@@ -188,7 +289,7 @@ button:contains("Generate Comment"):hover {
 
 /* Panel styling - more compact */
 .gr-panel {
-    background: rgba(17, 17, 17, 0.8) !important;
+    background: rgba(255,255,255,0.8) !important;
     border: 1px solid var(--border-color) !important;
     border-radius: 4px !important;
     padding: 12px !important;
