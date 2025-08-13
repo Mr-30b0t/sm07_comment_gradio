@@ -1,5 +1,9 @@
 import gradio as gr
 from helpers import validate_dates
+from counter import CommentCounter
+
+# Initialize the counter
+counter = CommentCounter()
 
 def calculate_service_units(start, end):
     """Calculate days and service units based on date range."""
@@ -32,10 +36,22 @@ def generate_comment(portal_id, fax, age, procedure, dx, start_date, end_date, d
     if error:
         return error
 
+    # Increment counter and track nurse-portal relationship
+    counter.increment(portal_id, initial)
+
     return f"""Portal ID: {portal_id} Fax #: {fax} \
 Client is eligible. Duplicates/history checked — none found. \
 Provider is eligible. Provider type: 44. No current or future PDC. \
 Submitter certification page submitted & completed. \
 Requested {', '.join(procedure)} for DOS: {start_date}–{end_date}. \
 Client age: {age}. Client has a qualifying condition: {', '.join(dx)} with at least 1 risk factor listed in policy. \
-DOS {start_date}–{end_date} is approved based on the Texas Medicaid Medical Policy Manual — {policy_month} Telemonitoring Services and SOP 111. {initial}""" 
+DOS {start_date}–{end_date} is approved based on the Texas Medicaid Medical Policy Manual — {policy_month} Telemonitoring Services and SOP 111. {initial}"""
+
+def get_stats(nurse_initials):
+    """Get current statistics for the specified nurse."""
+    return counter.get_stats(nurse_initials)
+
+def reset_stats():
+    """Reset all statistics."""
+    counter.reset_stats()
+    return "Statistics reset successfully!" 

@@ -1,50 +1,51 @@
 import gradio as gr
-from comment_generator import generate_comment, calculate_service_units
+from config import CSS_FILE_PATH, APP_TITLE, SHARE_APP
+from ui_components import (
+    create_client_info_tab, 
+    create_dates_tab, 
+    create_settings_tab, 
+    create_stats_tab,
+    create_output_section
+)
+from event_handlers import setup_event_handlers
 
-# Load CSS
-with open("style.css", "r") as f:
-    css = f.read()
+def load_css():
+    """Load CSS from file."""
+    try:
+        with open(CSS_FILE_PATH, "r") as f:
+            return f.read()
+    except FileNotFoundError:
+        print(f"Warning: CSS file {CSS_FILE_PATH} not found. Using default styling.")
+        return ""
 
-# Interface with custom theme
-with gr.Blocks(css=css) as demo:
-    gr.Markdown("# SM07 Comment Generator")
+def create_interface():
+    """Create the main Gradio interface."""
+    css = load_css()
     
-    with gr.Tab("Client Info"):
-        with gr.Row():
-            portal_id = gr.Textbox(label="Portal ID", lines=1, max_lines=1, scale=1)
-            fax = gr.Textbox(label="Fax #", lines=1)
-
-        with gr.Row():
-            age = gr.Textbox(label="Client Age", lines=1)
-            dx = gr.CheckboxGroup(choices=["HTN", "DM"], label="DX")
-        procedure = gr.CheckboxGroup(choices=["S9110", "S9110-U1"], label="Procedure Code(s)")
+    with gr.Blocks(css=css) as demo:
+        gr.Markdown(f"# {APP_TITLE}")
         
+        # Create UI components
+        portal_id, fax, age, dx, procedure = create_client_info_tab()
+        start_date, end_date, check_days_btn, decision = create_dates_tab()
+        initial, policy_month = create_settings_tab()
+        stats_btn, reset_btn, stats_output = create_stats_tab()
+        copy_btn, output = create_output_section()
+        
+        # Setup event handlers
+        setup_event_handlers(
+            copy_btn, check_days_btn, output,
+            portal_id, fax, age, procedure, dx,
+            start_date, end_date, decision, policy_month, initial,
+            stats_btn, reset_btn, stats_output
+        )
+        
+        return demo
 
-    with gr.Tab("Request Dates"):
-        with gr.Row():
-            start_date = gr.Textbox(label="Start Date")
-            end_date = gr.Textbox(label="End Date")
-
-        check_days_btn = gr.Button("Check Days", size="sm")
-
-        decision = gr.Radio(choices=["Approved"], value="Approved", label="Decision Type")
-
-    with gr.Tab("Settings"):
-        with gr.Row():
-            initial = gr.Textbox(label="Nurse Initials")
-            policy_month = gr.Textbox(label="Policy month/year")
-
-    with gr.Row(variant="panel"):
-        copy_btn = gr.Button("Generate Comment", size="sm")
-
-    output = gr.Textbox(label="Generated Output", lines=12, interactive=False, show_copy_button=True)
-
-    # Button logic
-    copy_btn.click(fn=generate_comment,
-                inputs=[portal_id, fax, age, procedure, dx, start_date, end_date, decision, policy_month, initial],
-                outputs=output)
-
-    check_days_btn.click(fn=calculate_service_units, inputs=[start_date, end_date], outputs=[])
+def main():
+    """Main application entry point."""
+    demo = create_interface()
+    demo.launch(share=SHARE_APP)
 
 if __name__ == "__main__":
-    demo.launch(share=True)
+    main()
